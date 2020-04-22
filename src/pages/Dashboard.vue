@@ -20,6 +20,7 @@
           class="full-width"
           hide-bottom />
     
+    <p v-if="get_timer_running">Running</p>
   </q-page>
 </template>
 
@@ -62,16 +63,19 @@ export default {
       ]
     }
   },
+  computed: {
+    get_timer_running () {
+      return this.$store.getters['timer/timerRunning']
+    }
+  },
   
   methods: {
     startTimer () {
-      this.timer_running = true
-      console.log('start')
+      this.$store.commit('timer/startTimer')
     },
     
     endTimer () {
-      this.timer_running = false
-      console.log('end')
+      this.$store.commit('timer/stopTimer')
     }
   }
 }
