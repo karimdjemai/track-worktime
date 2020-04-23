@@ -71,7 +71,9 @@ export default {
   
   methods: {
     startTimer () {
-      this.$store.commit('timer/startTimer')
+      if (!this.get_timer_running) {
+        this.$store.commit('timer/startTimer')
+      }
     },
     
     endTimer () {
